@@ -42,31 +42,16 @@ const InterviewDetailsForm = ({ onPrevTab }: Props) => {
     }),
 
     onSubmit: (values) => {
-      setState({
-        requisitionDetails: {
-          gender: state.requisitionDetails.gender,
-          noOfOpenings: state.requisitionDetails.noOfOpenings,
-          requisitionTitle: state.requisitionDetails.requisitionTitle,
-          urgency: state.requisitionDetails.urgency,
-          isComplete: state.requisitionDetails.isComplete,
-        },
-        jobDetails: {
-          jobDetails: state.jobDetails.jobDetails,
-          jobLocation: state.jobDetails.jobLocation,
-          jobTitle: state.jobDetails.jobTitle,
-          isComplete: state.jobDetails.isComplete,
-        },
+      setState((prevState) => ({
+        ...prevState,
         interviewSettings: {
-          interviewDuration: values.interviewDuration,
-          interviewLanguage: values.interviewLanguage,
-          interviewMode: values.interviewMode,
+          ...prevState.interviewSettings,
+          ...values,
           isComplete: true,
         },
-      });
+      }));
       if (values.interviewMode) {
         alert("Form successfully submitted");
-      } else {
-        alert("Form Fields Empty");
       }
     },
   });

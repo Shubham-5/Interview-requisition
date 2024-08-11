@@ -28,27 +28,14 @@ const JobDetailsForm = ({ onNextTab, onPrevTab }: Props) => {
         jobLocation: Yup.string().required("Job Location is required"),
       }),
       onSubmit: (values) => {
-        setState({
-          requisitionDetails: {
-            gender: state.requisitionDetails.gender,
-            noOfOpenings: state.requisitionDetails.noOfOpenings,
-            requisitionTitle: state.requisitionDetails.requisitionTitle,
-            urgency: state.requisitionDetails.urgency,
-            isComplete: state.requisitionDetails.isComplete,
-          },
+        setState((prevState) => ({
+          ...prevState,
           jobDetails: {
-            jobDetails: values.jobDetails,
-            jobLocation: values.jobLocation,
-            jobTitle: values.jobTitle,
+            ...prevState.jobDetails,
+            ...values,
             isComplete: true,
           },
-          interviewSettings: {
-            interviewDuration: state.interviewSettings.interviewDuration,
-            interviewLanguage: state.interviewSettings.interviewLanguage,
-            interviewMode: state.interviewSettings.interviewMode,
-            isComplete: state.interviewSettings.isComplete,
-          },
-        });
+        }));
         onNextTab();
       },
     });
