@@ -26,7 +26,7 @@ const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
 };
 
 const HomeLayout = () => {
-  const { state, setState } = useData()!;
+  const { state } = useData()!;
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
   const handleRequisitionSubmit = () => {
